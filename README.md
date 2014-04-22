@@ -2,14 +2,16 @@ Dell Venue 8 Pro WiFi Issue Fix
 ===================
 ----------
 
+Big thanks to Drahnier for testing and coming up with solution #2.
+
 ## Problem
 It seems like many Dell Venue 8 Pro (dv8p) Windows 8.1 systems are affected by an issue where wireless adapter does not wake up after being suspended. In my case, whenever the device was put to sleep, whether by screen timeout or by pressing the power button, and then woken up the wireless adapter would not reconnect to the wireless router or the access point.
 
 The wireless adapter needed to be **reset** (disabled and then enabled) in order to reconnect to the wireless network.
-Until Dell comes up with a fix, the solution below can be used.
+Until Dell comes up with a fix, either one of the two solution below can be used.
 
 
-##*Condensed Solution*
+##*Condensed Solution #1*
 
 *If you would like to understand all the steps please read the* **Explained Solution**. *For quick solution you will need 2 files:*
 
@@ -19,9 +21,9 @@ Until Dell comes up with a fix, the solution below can be used.
 
 
 - *Save the script in `C:\`*
-- *Import the task in Task Scheduler*
+- *Import the task ResetWiFi_1.xml in Task Scheduler*
 
-## Explained Solution
+## Explained Solution #1
 Write a script that resets the wireless network adapter right after the tablet wakes up after sleep. 
 
 Because dv8p has a full version of Windows 8.1 we are able to utilize all of the advanced features of the operating system. For this fix, we will be using Windows Task Scheduler, Even Viewer, and Windows PowerShell.
@@ -117,3 +119,61 @@ To test whether the task is running turn your tablet off by pressing the power b
 The Task Scheduler keeps track of whether the task ran successfully. Look for the attributes for your task that say "Last Run Time" and "Last Run Result". The result should say - "Operation completed successfully . (0x0)"
 
 Just in case the script doesn't run, reboot your machine. Then try again.
+
+##*Condensed Solution #2*
+
+This solution is courtesy of Drahnier.
+*If you would like to understand all the steps please read the* **Explained Solution #2**. *For quick solution you will need 2 files:*
+
+1. *https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/devcon/devcon.exe*
+2. *https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/task/ResetWiFi_2.xml*
+
+
+
+- *Download and save the devcon.exe file in `C:\Windows\System32`*
+- *Import the task ResetWiFi_2.xml in Task Scheduler*
+
+## Explained Solution #2
+
+This solution is courtesy of Drahnier.
+This method is very similar to the method above, except instead of PowerShell we will use DevCon.
+
+
+### Step 1: Devcon
+
+> The DevCon utility is a command-line utility that acts as an alternative to Device Manager. Using DevCon, you can enable, disable, restart, update, remove, and query individual devices or groups of devices. DevCon also provides information that is relevant to the driver developer and is not available in Device Manager.
+> -Microsoft
+
+For more information on DevCon see this link:
+http://support.microsoft.com/kb/311272
+
+Download devcon.exe from either the repository or the Microsoft link above. Once the file is downloaded save it in `C:\Windows\System32` directory.
+
+### Step 2: Scheduled Task
+
+The scheduled task steps are very similar to the Solution #1 Step 3, except for the "Action" part. 
+
+1. In the Search charm type in `Schedule Tasks`
+2. Select the "Schedule Tasks" control panel item
+3. Once the Scheduled Task window opens click on Create Task
+4. In the General tab give your task a name i.e. `Reset WiFi`
+Select "Run whether user is logged in or not"
+Select "Run with highest privileges"
+![](/screen_shots/Screenshot5.png)
+5. In the Triggers tab click New
+Select Begin the task: On an event
+Log: System
+Source: Kernel-Power
+Event ID: 507
+![](/screen_shots/Screenshot4.png)
+6. Click OK, you should now have a new trigger
+7. In Actions tab click New
+Action: Start a program
+Under "Program/Script" type in `C:\Windows\System32\devcon.exe`
+In the "add arguments" box type in `restart =net "sd\vid_0271&amp;pid_0418"`
+Leave the "Start in" box blank
+8. Click OK, you should now have a new action
+![](/screen_shots/Screenshot10.png)
+9. Click OK again to close and save the new task.
+10. You should now see your task in the task list
+11. Make sure the Status of the task is set to "Ready".
