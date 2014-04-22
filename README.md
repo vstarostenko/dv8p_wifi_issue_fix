@@ -11,8 +11,9 @@ The wireless adapter needed to be **reset** (disabled and then enabled) in order
 ##*Condensed Solution*
 
 *If you would like to understand all the steps please read the* **Explained Solution**. *For quick solution you will need 2 files:*
-*1. https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/script/reset_network_adapter.ps1*
-*2. https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/task/ResetWiFi.xml*
+
+1. *https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/script/reset_network_adapter.ps1*
+2. *https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/task/ResetWiFi.xml*
 
 
 
