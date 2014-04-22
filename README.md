@@ -16,6 +16,8 @@ Because dv8p has a full version of Windows 8.1 we are able to utilize all of the
 ### Step 1: Script
 
 The script that resets the network adapter can be found in this repo inside the "script" folder. The script is: `reset_network_adapter.ps1`
+https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/script/reset_network_adapter.ps1
+
 Before the script can be executed we need to enable Windows PowerShell to run scripts. By default this feature is disabled.
 
 ***Commands:***
