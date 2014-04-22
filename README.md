@@ -6,6 +6,7 @@ Dell Venue 8 Pro WiFi Issue Fix
 It seems like many Dell Venue 8 Pro (dv8p) Windows 8.1 systems are affected by an issue where wireless adapter does not wake up after being suspended. In my case, whenever the device was put to sleep, whether by screen timeout or by pressing the power button, and then woken up the wireless adapter would not reconnect to the wireless router or the access point.
 
 The wireless adapter needed to be **reset** (disabled and then enabled) in order to reconnect to the wireless network.
+Until Dell comes up with a fix, the solution below can be used.
 
 
 ##*Condensed Solution*
