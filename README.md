@@ -15,7 +15,7 @@ Because dv8p has a full version of Windows 8.1 we are able to utilize all of the
 
 ### Step 1: Script
 
-The script that resets the network adapter can be found in this repo.
+The script that resets the network adapter can be found in this repo inside the "script" folder. The script is: `reset_network_adapter.ps1`
 Before the script can be executed we need to enable Windows PowerShell to run scripts. By default this feature is disabled.
 
 ***Commands:***
@@ -62,12 +62,12 @@ Now that we have our script, in order to know at what point we should execute it
 
 To open event viewer swipe from right and click on the "search" charm. Type `view event logs` into the search bar. Right below you will see "View event logs" control panel item. Click on it.
 
-<img>
+![](\screen_shots\Screenshot2.png)
 
 Inside the Event Viewer window expand "Windows Logs" folder and select "System". Now, in the middle section we see the list of log entries and their corresponding information.
 In order to see what event gets triggered when the tablet wakes up we put it to sleep by pressing the power button, and then wake it up by pressing the power button. In the even viewer click on "Action" and then select "Refresh". Now we see the latest events, and one of them is an event with event ID **507**. If we select the event by clicking on it we see that in the description we are told that "The system is exiting connected standby."  **This is the event we need.**
 
-<img>
+![](\screen_shots\Screenshot1.png)
 
 ### Step 3: Scheduled Task
 
@@ -78,21 +78,21 @@ The last step is to schedule a task to run the script every time the tablet wake
 4. In the General tab give your task a name i.e. `Reset WiFi`
 Select "Run whether user is logged in or not"
 Select "Run with highest privileges"
-<img>
+![](\screen_shots\Screenshot5.png)
 5. In the Triggers tab click New
 Select Begin the task: On an event
 Log: System
 Source: Kernel-Power
 Event ID: 507
-<img>
+![](\screen_shots\Screenshot4.png)
 6. Click OK, you should now have a new trigger
 7. In Actions tab click New
 Action: Start a program
 Under "Program/Script" type in `PowerShell`
-In the "add arguments" box type in the location of your script, including script name i.e. `C:\script.ps1`
+In the "add arguments" box type in the location of your script, including script name i.e. `C:\reset_network_adapter.ps1`
 In the "Start in" box type in the location of the script i.e. `C:\`
 8. Click OK, you should now have a new action
-<img>
+![](\screen_shots\Screenshot7.png)
 9. Click OK again to close and save the new task.
 10. You should now see your task in the task list
 11. Make sure the Status of the task is set to "Ready".
