@@ -8,7 +8,18 @@ It seems like many Dell Venue 8 Pro (dv8p) Windows 8.1 systems are affected by a
 The wireless adapter needed to be **reset** (disabled and then enabled) in order to reconnect to the wireless network.
 
 
-## Solution
+##*Condensed Solution*
+
+*If you would like to understand all the steps please read the* **Explained Solution**. *For quick solution you will need 2 files:*
+*1. https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/script/reset_network_adapter.ps1*
+*2. https://github.com/vstarostenko/dv8p_wifi_issue_fix/blob/master/task/ResetWiFi.xml*
+
+
+
+- *Save the script in `C:\`*
+- *Import the task in Task Scheduler*
+
+## Explained Solution
 Write a script that resets the wireless network adapter right after the tablet wakes up after sleep. 
 
 Because dv8p has a full version of Windows 8.1 we are able to utilize all of the advanced features of the operating system. For this fix, we will be using Windows Task Scheduler, Even Viewer, and Windows PowerShell.
