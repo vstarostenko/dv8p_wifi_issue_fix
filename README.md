@@ -66,7 +66,7 @@ The script itself has 3 lines:
     $adapter.Disable()
     $adapter.Enable()
 
-The 1st line gets the correct adapter and sets that adapter object to a temporary variable called "adapter". IMPORTANT: `{$_.DeviceId -eq 0}` should be changed to reflect the DeiceID should be set to the same ID as we got when we ran the *`Set-ExecutionPolicy RemoteSigned`* command. In my case the ID was 0. (I believe this will be the case for many dv8p's, the only exception might be if you are running an external USB network adapter).
+The 1st line gets the correct adapter and sets that adapter object to a temporary variable called "adapter". IMPORTANT: `{$_.DeviceId -eq 0}` should be changed to reflect the DeiceID should be set to the same ID as we got when we ran the *`Get-wmiobject win32_NetworkAdapter`* command. In my case the ID was 0. (I believe this will be the case for many dv8p's, the only exception might be if you are running an external USB network adapter).
 
 In lines 2 and 3 we apply the Disable() and Enable() methods to our adapter variable. This in turn disables and right away enables the network adapter.
 
